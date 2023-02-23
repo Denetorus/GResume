@@ -1,0 +1,27 @@
+<?php
+
+use sketch\SK;
+
+if (!empty($_SERVER['argv'][0])){
+    if ($_SERVER['argv'][0] === 'sk') {
+        array_splice($_SERVER['argv'], 0, 1);
+    }
+    if (!empty($_SERVER['argv'][0])){
+        $_SERVER['REQUEST_URI'] = $_SERVER['argv'][0];
+        array_splice($_SERVER['argv'], 0, 1);
+    }
+}
+
+$_SERVER['REQUEST_URI'] = "/".$_SERVER['REQUEST_URI'];
+
+include 'skCommon.php';
+
+try {
+    SK::run(CONFIG . "/console.json");
+} catch (\sketch\exceptions\ExceptionRouterModelNotChosen $e) {
+    echo "\e[0;31mError: router model not chosen\e[0m\n";
+} catch (\sketch\exceptions\ExceptionSignModelNotChosen $e) {
+    echo "\e[0;31mError: sign model not chosen\e[0m\n";
+} catch (\sketch\exceptions\ExceptionSignOptionsNotCorrect $e) {
+    echo "\e[0;31mError: sign option not correct\e[0m\n";
+}
