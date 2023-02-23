@@ -13,9 +13,7 @@ class SignWeb extends SignBase
     {
 
         return [
-            'class' => 'sketch\sign\model\SignDBModel',
-            'db' => new DB,
-            'user' => new users()
+            'class' => 'sketch\sign\model\SignWithoutModel',
         ];
 
 

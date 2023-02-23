@@ -10,7 +10,7 @@ class RouterWeb extends \sketch\router\RouterWeb
         return [
 
             '' => [
-                'path' => 'home/index',
+                'path' => 'index',
                 'status' => -1
             ],
 
